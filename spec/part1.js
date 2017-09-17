@@ -346,7 +346,7 @@
         var iterator = function(value) { return value === 1; };
         var numbers = [1, 2, 2, 3, 4, 4];
 
-        expect(_.uniq(FILL_ME_IN)).to.eql([1, 2]);
+        expect(_.uniq(numbers, true, iterator)).to.eql([1]);
       });
 
       it('should produce a brand new array instead of modifying the input array', function() {
@@ -361,7 +361,7 @@
       checkForNativeMethods(function() {
         _.map([1, 2, 3, 4], function(num) {
           return num * 2;
-        })
+        });
       });
 
       it('should not mutate the input array', function() {
@@ -391,7 +391,7 @@
          * that don't mutate their inputs!
          */
 
-        expect(input).to.eql([1,2,3,4,5])
+        expect(input).to.eql([1,2,3,4,5]);
       });
 
       it('should apply a function to every value in an array', function() {
@@ -446,7 +446,7 @@
     describe('reduce', function() {
       checkForNativeMethods(function() {
         var add = function(tally, item) {return tally + item; };
-        _.reduce([1, 2, 3, 4], add)
+        _.reduce([1, 2, 3, 4], add);
       });
 
       it('should be a function', function() {
@@ -461,7 +461,7 @@
       it('should not mutate the input array', function() {
         var input = [1,2,3,4,5];
         var result = _.reduce(input, function(memo, item) {return item;});
-        
+
         /*
          * Mutation of inputs should be avoided without good justification otherwise
          * as it can often lead to hard to find bugs and confusing code!
@@ -485,7 +485,7 @@
          * that don't mutate their inputs!
          */
 
-        expect(input).to.eql([1,2,3,4,5])
+        expect(input).to.eql([1,2,3,4,5]);
       });
 
       it('should invoke the iterator function with arguments (memo, item) in that order', function() {
