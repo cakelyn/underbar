@@ -39,7 +39,7 @@
          * that don't mutate their inputs!
          */
 
-        expect(input).to.eql([1,2,3,4,5])
+        expect(input).to.eql([1,2,3,4,5]);
       });
 
       it('should return true given an array and a value from that array', function(){
@@ -319,9 +319,9 @@
 
         _.defaults(destination, source);
 
-        expect(destination.a).to.equal('')
+        expect(destination.a).to.equal('');
         expect(destination.b).to.equal(0);
-        expect(isNaN(destination.c)).to.equal(true)
+        expect(isNaN(destination.c)).to.equal(true);
       });
 
       it('should copy properties source an arbitrary number of source objects', function() {
@@ -366,7 +366,7 @@
         var noop = _.once(function() {});
 
         expect(noop).to.be.an.instanceOf(Function);
-      })
+      });
 
       it('should only run a user-defined function if it has not been run before', function() {
         var num = 0;
@@ -415,7 +415,7 @@
         _.memoize(function add(a, b) {
           return a + b;
         });
-      })
+      });
 
       it('should produce the same result as the non-memoized version', function() {
         expect(add(1, 2)).to.equal(3);
@@ -440,7 +440,7 @@
         memoSpy(10);
         expect(spy).to.have.been.calledOnce;
       });
-      
+
       it('should not run the memoized function twice when given a reference type as an argument', function() {
         // Be careful how you are checking if a set of arguments has been passed in already
         var spy = sinon.spy(function() { return 'Dummy output'; });
