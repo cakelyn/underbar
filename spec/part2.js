@@ -469,11 +469,11 @@
 
       beforeEach(function() {
         callback = sinon.spy();
-      })
+      });
 
       checkForNativeMethods(function() {
         _.delay(callback, 100);
-      })
+      });
 
       it('should only execute the function after the specified wait time', function() {
         _.delay(callback, 100);

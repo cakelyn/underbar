@@ -38,12 +38,7 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    if (n === undefined)
-      return array[array.length-1];
-    else if (n > array.length)
-      return array;
-    else
-      return array.slice((array.length-1) - (n-1));
+    return n === undefined ? array[array.length-1] : array.slice(Math.max(0, array.length - n));
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -105,7 +100,6 @@
   _.uniq = function(array, isSorted, iterator) {
     var result = [];
     var isDupe;
-
 
     if (isSorted && iterator !== undefined) {
       _.each(array, function(item) {
@@ -186,6 +180,7 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     var noAccumulator = accumulator === undefined;
+
     _.each(collection, function(item) {
       if (noAccumulator) {
         accumulator = item;
