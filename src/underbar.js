@@ -197,11 +197,13 @@
   _.contains = function(collection, target) {
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
-    return _.reduce(collection, function(wasFound, item) {
-      if (wasFound) {
+    return _.reduce(collection, function(found, item) {
+      if (found) {
         return true;
+      } else {
+        return item === target;
       }
-      return item === target;
+
     }, false);
   };
 
@@ -218,8 +220,9 @@
     return _.reduce(collection, function(isTrue, item) {
       if (!isTrue) {
         return false;
+      } else {
+        return !!iterator(item);
       }
-      return !!iterator(item);
     }, true);
   };
 
@@ -234,7 +237,7 @@
     }
 
     return !_.every(collection, function(item) {
-      return !iterator(item);
+      return !(iterator(item));
     });
   };
 
@@ -274,8 +277,9 @@
 
     _.each(arguments, function(args) {
       _.each(args, function(value, key) {
-        if (!obj.hasOwnProperty(key))
-        obj[key] = value;
+        if (!obj.hasOwnProperty(key)) {
+          obj[key] = value;
+        }
       });
     });
 
@@ -328,7 +332,7 @@
     return function() {
       var arg = JSON.stringify(arguments);
       if (!myCache.hasOwnProperty(arg)) {
-        myCache[arg] = func.apply(null, arguments);
+        myCache[arg] = func.apply(this, arguments);
       }
 
       return myCache[arg];
@@ -362,16 +366,19 @@
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
     var arrCopy = array.slice();
-    var randomNum;
-    var randomArr = [];
+    var temp, j;
 
+    // Fisher-Yates shuffle
     for (var i = 0; i < array.length; i++) {
-      randomNum = Math.floor(Math.random() * arrCopy.length);
-      randomArr.push(arrCopy[randomNum]);
-      arrCopy.splice(randomNum, 1);
+      // generate random number between 0 and length - 1 (j)
+      // switch array[i] and array[j];
+      j = Math.floor(Math.random() * array.length);
+      temp = arrCopy[i];
+      arrCopy[i] = arrCopy[j];
+      arrCopy[j] = temp;
     }
 
-    return randomArr;
+    return arrCopy;
   };
 
 

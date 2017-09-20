@@ -496,8 +496,8 @@
 
     describe('shuffle', function() {
       checkForNativeMethods(function() {
-        _.shuffle([1, 2, 3, 4])
-      })
+        _.shuffle([1, 2, 3, 4]);
+      });
 
       it('should not modify the original object', function() {
         var numbers = [4, 5, 6];
